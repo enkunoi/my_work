@@ -11,77 +11,99 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header class="header"> 
     <div class="logo">TechShop</div>
-<nav class="main-nav">
-    <ul class="nav-list">
-        <li><a href="#" class="class-btn">Головна</a></li>
-        <li><a href="#" class="class-btn">Товари</a></li>
-        <li><a href="#" class="class-btn">Про нас</a></li>
-        <li><a href="#" class="class-btn">Контакти</a></li>
-        <li><a href="#" class="class-btn">Кошик</a></li>
-    </ul>
-</nav>
-<div class="user-actions">
-    <button class="btn btn-cart">Кошик(0)</button>
-    </div>
-<div class="product-card">
-    <img src="https://files.foxtrot.com.ua/PhotoNew/img_0_60_12262_0_1_YHUkWD.jpg" alt="Iphone 17" class="product-img">
-    <h3 class="product-title">Iphone 13</h3>
-    <p class="product-desc">Краща батарея та камера.</p>
-    <span class="priduct-price">46 000 грн</span>
-    <button class="btn-buy">Купити</button>
-</div>
-</header>
-<main>
-    <section class="hero">
-    <h2>Новинки 2025</h2>
-    <a href="#" class="class-btn">Переглянути товари</a>
-    </section>
-    <section>
-        <h2>Популярні товари</h2>
-    <article>
-        <img src="https://content1.rozetka.com.ua/goods/images/big/458242807.jpg" alt="Ігрова клавіатура AULA F75"/>
-        <h3>Ігрова клавіатура AULA F75</h3>
-        <p>Механічна клавіатура для геймінгу</p>
-        <p>2200 грн</p>
-        <button>Купити</button>
-    </article>
-    <article>
-        <img src="https://cdn.comfy.ua//media/catalog/product/r/o/rockfall-3-mecha-tkl-wireless-black_1.jpg" alt="Ігрова клавіатура HATOR Rockfall 3TKL"/>
-        <h3>Ігрова клавіатура HATOR Rockfall 3TKL</h3>
-        <p>Механічна клавіатура з комбінованим підключенням</p>
-        <p>3399 грн</p>
-        <button>Купити</button>
-    </article>
-    <article>
-        <img src="https://content2.rozetka.com.ua/goods/images/big/509657651.png" alt="Ігрова мишка HATOR Pulsar 3"/>
-        <h3>Ігрова мишка HATOR Pulsar 3</h3>
-        <p>Ігрова мишка, оптична</p>
-        <p>1599 грн</p>
-        <button>Купити</button>
-    </article>
-    <article>
-        <img src="https://img.telemart.ua/389166-815228/evolve-onepad-m-ev-op-mbk.png" alt="Килимок для миші EVOLVE OnePadd"/>
-        <h3>Килимок для миші EVOLVE OnePadd</h3>
-        <p>Килимок для миші розміру XL, матеріал каучук</p>
-        <p>599 грн</p>
-        <button>Купити</button>
-    </article>
-    </section>
-</main>
-<footer>
-        <p>&copy; 2025 TechShop</p>
-        <h3>Наші соцмережі:</h3>
-        <ul>
-            <li><a href="#" class="class-btn">Instagram</a></li>
-            <li><a href="#" class="class-btn">Telegram</a></li>
-            <li><a href="#" class="class-btn">TikTok</a></li>
+    <nav class="main-nav">
+        <ul class="nav-list">
+            <li><a href="#" class="class-btn">Головна</a></li>
+            <li><a href="#" class="class-btn">Товари</a></li>
+            <li><a href="#" class="class-btn">Про нас</a></li>
+            <li><a href="#" class="class-btn">Контакти</a></li>
+            <li><a href="#" class="class-btn">Кошик</a></li>
         </ul>
-        <form>
-            <input type="email">
-            <button>Підписатися</button>
-        </form>
-    </footer>
+    </nav>
+    <div class="user-actions">
+        <button class="btn btn-cart">Кошик(0)</button>
+    </div>
+    </header>
+
+<main class="page-layout">
+    
+    <aside class="sidebar">
+        <h3>Фільтри</h3>
+        <ul>
+            <li><input type="checkbox" /> Ноутбуки</li>
+            <li><input type="checkbox" /> Смартфони</li>
+        </ul>
+    </aside>
+
+    <section class="products-content"> 
+        <div class="hero">
+            <h2>Новинки 2025</h2>
+            <a href="#" class="class-btn">Переглянути товари</a>
+        </div>
+
+        <h2>Популярні товари</h2>
+        
+        <div class="products-grid">
+            
+            <article class="product-card">
+                <img src="https://files.foxtrot.com.ua/PhotoNew/img_0_60_12262_0_1_YHUkWD.jpg" alt="Iphone 13" class="product-img">
+                <h3 class="product-title">Iphone 13</h3>
+                <p class="product-desc">Краща батарея та камера.</p>
+                <span class="product-price">46 000 грн</span>
+                <button>Купити</button>
+            </article>
+
+            <article class="product-card">
+                <img src="https://content1.rozetka.com.ua/goods/images/big/458242807.jpg" alt="Ігрова клавіатура AULA F75"/>
+                <h3>Ігрова клавіатура AULA F75</h3>
+                <p>Механічна клавіатура для геймінгу</p>
+                <span class="product-price">2200 грн</span>
+                <button>Купити</button>
+            </article>
+
+            <article class="product-card">
+                <img src="https://cdn.comfy.ua//media/catalog/product/r/o/rockfall-3-mecha-tkl-wireless-black_1.jpg" alt="Ігрова клавіатура HATOR Rockfall 3TKL"/>
+                <h3>Ігрова клавіатура HATOR Rockfall 3TKL</h3>
+                <p>Механічна клавіатура з комбінованим підключенням</p>
+                <span class="product-price">3399 грн</span>
+                <button>Купити</button>
+            </article>
+
+            <article class="product-card">
+                <img src="https://content2.rozetka.com.ua/goods/images/big/509657651.png" alt="Ігрова мишка HATOR Pulsar 3"/>
+                <h3>Ігрова мишка HATOR Pulsar 3</h3>
+                <p>Ігрова мишка, оптична</p>
+                <span class="product-price">1599 грн</span>
+                <button>Купити</button>
+            </article>
+
+            <article class="product-card">
+                <img src="https://img.telemart.ua/389166-815228/evolve-onepad-m-ev-op-mbk.png" alt="Килимок для миші EVOLVE OnePadd"/>
+                <h3>Килимок для миші EVOLVE OnePadd</h3>
+                <p>Килимок для миші розміру XL, матеріал каучук</p>
+                <span class="product-price">599 грн</span>
+                <button>Купити</button>
+            </article>
+
+        </div> </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 TechShop</p>
+    <h3>Наші соцмережі:</h3>
+    <ul>
+        <li><a href="#" class="class-btn">Instagram</a></li>
+        <li><a href="#" class="class-btn">Telegram</a></li>
+        <li><a href="#" class="class-btn">TikTok</a></li>
+    </ul>
+    <form>
+        <input type="email">
+        <button>Підписатися</button>
+    </form>
+</footer>
+
 </body>
 </html>
