@@ -11,26 +11,36 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="form.css">
 </head>
-</head>
 <body>
 
 <header class="header"> 
     <div class="logo">TechShop</div>
+    
+    <button class="menu-toggle" aria-label="Відкрити меню">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+    </button>
+    
     <nav class="main-nav">
         <ul class="nav-list">
             <li><a href="index.html" class="class-btn">Головна</a></li>
             <li><a href="#" class="class-btn">Товари</a></li>
             <li><a href="#" class="class-btn">Про нас</a></li>
             <li><a href="#" class="class-btn">Контакти</a></li>
-            <li><a href="chekout.html" class="class-btn">Кошик</a></li>
+            <li>
+                <a href="chekout.html" class="cart-link-wrapper">
+                    <button class="btn-cart"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Кошик(0)</span>
+                    </button>
+                </a>
+            </li>
         </ul>
     </nav>
-    <div class="user-actions">
-        <a href="checkout.html">
-            <button class="btn btn-cart">Кошик(0)</button>
-        </a>
-    </div>
-    </header>
+</header>
 
 <main class="page-layout">
     <h2>Оформлення замовлення</h2>
@@ -113,16 +123,39 @@
 <footer>
     <p>&copy; 2025 TechShop</p>
     <h3>Наші соцмережі:</h3>
-    <ul>
-        <li><a href="#" class="class-btn">Instagram</a></li>
-        <li><a href="#" class="class-btn">Telegram</a></li>
-        <li><a href="#" class="class-btn">TikTok</a></li>
+    <ul class="social-links">
+        <li>
+            <a href="#" class="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M228.88,26.19a9,9,0,0,0-9.16-1.57L17.06,103.93a14.22,14.22,0,0,0,2.43,27.21L72,141.45V200a15.92,15.92,0,0,0,10,14.83,15.91,15.91,0,0,0,17.51-3.73l25.32-26.26L165,220a15.88,15.88,0,0,0,10.51,4,16.3,16.3,0,0,0,5-.79,15.85,15.85,0,0,0,10.67-11.63L231.77,35A9,9,0,0,0,228.88,26.19Zm-61.14,36L78.15,126.35l-49.6-9.73ZM88,200V152.52l24.79,21.74Zm87.53,8L92.85,135.5l119-85.29Z"></path></svg>
+                <span>Telegram</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path></svg>
+                <span>Instagram</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M224,72a48.05,48.05,0,0,1-48-48,8,8,0,0,0-8-8H128a8,8,0,0,0-8,8V156a20,20,0,1,1-28.57-18.08A8,8,0,0,0,96,130.69V88a8,8,0,0,0-9.4-7.88C50.91,86.48,24,119.1,24,156a76,76,0,0,0,152,0V116.29A103.25,103.25,0,0,0,224,128a8,8,0,0,0,8-8V80A8,8,0,0,0,224,72Zm-8,39.64a87.19,87.19,0,0,1-43.33-16.15A8,8,0,0,0,160,102v54a60,60,0,0,1-120,0c0-25.9,16.64-49.13,40-57.6v27.67A36,36,0,1,0,136,156V32h24.5A64.14,64.14,0,0,0,216,87.5Z"></path></svg>
+                <span>TikTok</span>
+            </a>
+        </li>
     </ul>
-    <form>
-        <input type="email">
-        <button>Підписатися</button>
+
+    <form class="subscribe-form">
+        <input type="email" placeholder="Ваш Email">
+        <button type="submit">Підписатися</button>
     </form>
 </footer>
 
+<script>
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    toggleBtn.addEventListener('click', () => {
+        mainNav.classList.toggle('is-open');
+    });
+</script>
 </body>
 </html>
