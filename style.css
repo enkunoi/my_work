@@ -72,25 +72,6 @@ a {
     transition: color 0.3s ease;
 }
 
-.class-btn {
-   display: inline-block;
-   padding: 10px 20px;
-   background-color: var(--primary-color);
-   color: white;
-   border-radius: 6px;
-   font-weight: 600;
-   white-space: nowrap;       
-   transition: all 0.3s ease;
-   box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); 
-}
-
-.class-btn:hover {
-   background-color: var(--primary-hover);
-   transform: translateY(-1px); 
-   box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
-}
-
-
 .cart-link-wrapper {
   text-decoration: none;
 }
@@ -98,28 +79,32 @@ a {
 .btn-cart {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background-color: #f3f4f6;
-  border: none;
-  outline: none;
-  border-radius: 6px;
-  cursor: pointer;
+  justify-content: center;
+  gap: 8px; 
+  padding: 10px 18px;   
+  background-color: #f3f4f6; 
+  color: var(--text-dark);  
+  border: none;    
+  border-radius: 6px;        
   font-family: var(--font-main);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text-dark);
-  transition: background-color 0.2s ease;
+  text-decoration: none;     
+  cursor: pointer;
+  transition: background-color 0.2s ease; 
 }
 
 .btn-cart:hover {
-  background-color: #e5e7eb;
+  background-color: #e5e7eb; 
+  color: var(--text-dark);
 }
 
 .btn-cart svg {
   width: 20px;
   height: 20px;
   stroke: var(--text-dark);
+  fill: none;  
+  opacity: 1;       
 }
 
 
