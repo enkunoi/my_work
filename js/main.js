@@ -66,6 +66,15 @@ const products = [
 ]
 let cart = [];
 
+function fetchProducts() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(products);
+    }, 1500); 
+  });
+}
+
+
 const container = document.querySelector(".products-grid");
 container.addEventListener("click", (event) => {
     if (event.target.classList.contains("btn-buy")) {
@@ -104,17 +113,38 @@ function addToCart(product) {
     updateUI();
 }
 
-const htmlString = products
-  .map((product) => {
-    return `
-        <article class="product-card">
+
+
+async function initShop() {
+  const loader = document.getElementById("loader");
+  const container = document.querySelector(".products-grid");
+
+  loader.classList.remove("hidden");
+  container.innerHTML = "";
+
+  try {
+    const data = await fetchProducts();
+
+    loader.classList.add("hidden");
+
+    const htmlString = data
+      .map(
+        (product) => `
+            <article class="product-card">
             <img src="${product.image}" alt="${product.title}">
             <h3>${product.title}</h3>
             <p class="price">${product.price} грн</p>
             <button class="btn btn-buy" data-id="${product.id}">Купити</button>
         </article>
-    `;
-  })
-  .join(""); 
+        `,
+      )
+      .join("");
 
-container.innerHTML = htmlString;
+    container.innerHTML = htmlString;
+  } catch (error) {
+    loader.classList.add("hidden");
+    container.innerHTML = `<p class="error">Помилка: ${error.message}</p>`;
+  }
+}
+
+initShop();
