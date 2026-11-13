@@ -91,6 +91,34 @@ function calculateTotal() {
     );
 }
 
+function renderCartItems() {
+    const cartContainer = document.querySelector("#cartItemsContainer");
+
+    document.querySelector("#cartTotalSum").textContent = calculateTotal();
+    if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Кошик порожній</p>";
+        
+        return;
+    }
+    const html = cart
+        .map((item) => `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.title}">
+                <h4>${item.title}</h4>
+                <p>${item.price} грн</p>
+                <div>
+                <button data-id="${item.id}" data-action="minus">−</button>
+                <span>${item.quantity}</span>
+                <button data-id="${item.id}" data-action="plus">+</button>
+                </div>
+            </div>
+        `)
+        .join("");
+    cartContainer.innerHTML = html;
+
+    
+}
+
 function updateUI() {
   const cartCounter = document.querySelector(".cart-counter");
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -101,6 +129,7 @@ function updateUI() {
 
   console.log("Поточний кошик:", cart);
   console.log("Загальна сума:", calculateTotal(), "грн");
+  renderCartItems();
 }
 
 function addToCart(product) {
@@ -127,7 +156,33 @@ async function initShop() {
 
     loader.classList.add("hidden");
 
-    const htmlString = data
+const cartButton = document.querySelector("#cartBtn"); 
+const cartOverlay = document.getElementById("cartOverlay");
+const closeBtn = document.getElementById("closeCartBtn");
+console.log("cartButton:", cartButton);
+console.log("cartOverlay:", cartOverlay);
+console.log("closeBtn:", closeBtn);
+
+function openCartModal(event) {
+    (event).preventDefault(); 
+    cartOverlay.classList.remove("hidden");
+    renderCartItems(); 
+}
+
+function closeCartModal() {
+  cartOverlay.classList.add("hidden");
+}
+
+cartButton.addEventListener("click", openCartModal);
+closeBtn.addEventListener("click", closeCartModal);
+
+cartOverlay.addEventListener("click", (event) => {
+  if (event.target === cartOverlay) {
+    closeCartModal();
+  }
+});
+
+const htmlString = data
       .map(
         (product) => `
             <article class="product-card">
