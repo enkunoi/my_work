@@ -65,13 +65,24 @@ const products = [
 
 ]
 let cart = [];
+let globalStoreProducts = [];
 
-function fetchProducts() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(products);
-    }, 1500); 
-  });
+async function fetchProducts() {
+  try {
+    const response = await fetch(
+      "https://fakestoreapi.com/products?limit=8",
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP помилка: ${response.status}`);
+    }
+
+    const realProducts = await response.json();
+    return realProducts;
+  } catch (error) {
+    console.error("Помилка завантаження товарів:", error.message);
+    throw error;
+  }
 }
 
 
@@ -79,7 +90,7 @@ const container = document.querySelector(".products-grid");
 container.addEventListener("click", (event) => {
     if (event.target.classList.contains("btn-buy")) {
         const productId = Number(event.target.dataset.id);
-        const selectedProduct = products.find((p) => p.id ===productId);
+        const selectedProduct = globalStoreProducts.find((p) => p.id === productId);
         addToCart(selectedProduct);
     }
 });
@@ -94,7 +105,7 @@ function calculateTotal() {
 function renderCartItems() {
     const cartContainer = document.querySelector("#cartItemsContainer");
 
-    document.querySelector("#cartTotalSum").textContent = calculateTotal();
+    document.querySelector("#cartTotalSum").textContent = "$" + calculateTotal().toFixed(2);
     if (cart.length === 0) {
         cartContainer.innerHTML = "<p>Кошик порожній</p>";
         
@@ -105,7 +116,7 @@ function renderCartItems() {
             <div class="cart-item">
                 <img src="${item.image}" alt="${item.title}">
                 <h4>${item.title}</h4>
-                <p>${item.price} грн</p>
+                <p>$${item.price}</p>
                 <div>
                 <button data-id="${item.id}" data-action="minus">−</button>
                 <span>${item.quantity}</span>
@@ -142,64 +153,64 @@ function addToCart(product) {
     updateUI();
 }
 
+function initCartModal() {
+    const cartButton = document.querySelector("#cartBtn");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const closeBtn = document.getElementById("closeCartBtn");
 
+    function openCartModal(event) {
+        event.preventDefault();
+        cartOverlay.classList.remove("hidden");
+        renderCartItems();
+    }
+
+    function closeCartModal() {
+        cartOverlay.classList.add("hidden");
+    }
+
+    cartButton.addEventListener("click", openCartModal);
+    closeBtn.addEventListener("click", closeCartModal);
+    cartOverlay.addEventListener("click", (event) => {
+        if (event.target === cartOverlay) closeCartModal();
+    });
+}
 
 async function initShop() {
-  const loader = document.getElementById("loader");
-  const container = document.querySelector(".products-grid");
 
-  loader.classList.remove("hidden");
-  container.innerHTML = "";
+    initCartModal();
 
-  try {
-    const data = await fetchProducts();
+    const loader = document.getElementById("loader");
+    const container = document.querySelector(".products-grid");
 
-    loader.classList.add("hidden");
+    loader.classList.remove("hidden");
+    container.innerHTML = "";
 
-const cartButton = document.querySelector("#cartBtn"); 
-const cartOverlay = document.getElementById("cartOverlay");
-const closeBtn = document.getElementById("closeCartBtn");
-console.log("cartButton:", cartButton);
-console.log("cartOverlay:", cartOverlay);
-console.log("closeBtn:", closeBtn);
+    try {
+        const data = await fetchProducts();
 
-function openCartModal(event) {
-    (event).preventDefault(); 
-    cartOverlay.classList.remove("hidden");
-    renderCartItems(); 
-}
+        globalStoreProducts = data;
 
-function closeCartModal() {
-  cartOverlay.classList.add("hidden");
-}
+        loader.classList.add("hidden");
 
-cartButton.addEventListener("click", openCartModal);
-closeBtn.addEventListener("click", closeCartModal);
 
-cartOverlay.addEventListener("click", (event) => {
-  if (event.target === cartOverlay) {
-    closeCartModal();
-  }
-});
+        const htmlString = data
+            .map(
+                (product) => `
+                    <article class="product-card">
+                    <img src="${product.image}" alt="${product.title}">
+                    <h3>${product.title}</h3>
+                    <p class="price">$${product.price}</p>
+                    <button class="btn btn-buy" data-id="${product.id}">Купити</button>
+                </article>
+                `,
+            )
+            .join("");
 
-const htmlString = data
-      .map(
-        (product) => `
-            <article class="product-card">
-            <img src="${product.image}" alt="${product.title}">
-            <h3>${product.title}</h3>
-            <p class="price">${product.price} грн</p>
-            <button class="btn btn-buy" data-id="${product.id}">Купити</button>
-        </article>
-        `,
-      )
-      .join("");
-
-    container.innerHTML = htmlString;
-  } catch (error) {
-    loader.classList.add("hidden");
-    container.innerHTML = `<p class="error">Помилка: ${error.message}</p>`;
-  }
+        container.innerHTML = htmlString;
+    } catch (error) {
+        loader.classList.add("hidden");
+        container.innerHTML = `<p class="error">Помилка: ${error.message}</p>`;
+    }
 }
 
 initShop();
