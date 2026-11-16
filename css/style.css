@@ -140,6 +140,7 @@ a {
   grid-column: 2;
 }
 
+
 .hero {
    height: 40vh; 
    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1120&auto=format&fit=crop');
@@ -158,6 +159,12 @@ a {
 .hero h2 {
    font-size: 2.5rem;
    margin-bottom: 15px;
+}
+
+.dragging {
+  opacity: 0.4;
+  cursor: grabbing;
+  transform: scale(1.05);
 }
 
 .products-grid {
@@ -187,6 +194,24 @@ a {
   border-radius: 6px; 
   margin-bottom: 15px;
 }
+
+.drag-and-drop-zone {
+  position: sticky;
+  top: 0;
+  background-color: #f3f4f6;
+  height: 200px;
+  width: 1200px;
+  margin: auto;
+  border: 2px dashed #f59e0b;
+  text-align: center;
+  line-height: 100px;
+  margin-bottom: 2rem;
+}
+
+.drag-over {
+  background-color: #f59e0b;
+}
+
 
 .product-title {
   font-size: 1.1rem;

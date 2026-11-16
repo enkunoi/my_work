@@ -85,6 +85,14 @@ async function fetchProducts() {
   }
 }
 
+const productsContainer = document.querySelector('.products-grid');
+
+productsContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('btn-buy')) {
+    const productId = event.target.dataset.id; 
+    console.log('Клік по товару з ID:', productId);
+  }
+});
 
 const container = document.querySelector(".products-grid");
 container.addEventListener("click", (event) => {
@@ -93,6 +101,41 @@ container.addEventListener("click", (event) => {
         const selectedProduct = globalStoreProducts.find((p) => p.id === productId);
         addToCart(selectedProduct);
     }
+});
+
+container.addEventListener('dragstart', (event) => {
+  const card = event.target.closest('.product-card');
+  if (card) {
+    event.dataTransfer.setData('text/plain', card.dataset.id);
+    card.classList.add('dragging');
+  }
+});
+
+container.addEventListener('dragend', (event) => {
+  const card = event.target.closest('.product-card');
+  if (card) {
+    card.classList.remove('dragging');
+  }
+});
+
+const favoritesZone = document.getElementById('dropZone');
+
+favoritesZone.addEventListener('dragover', (event) => {
+  event.preventDefault(); 
+  favoritesZone.classList.add('drag-and-drop-zone');
+});
+
+favoritesZone.addEventListener('dragleave', () => {
+  favoritesZone.classList.remove('drag-and-drop-zone'); 
+});
+
+favoritesZone.addEventListener('drop', (event) => {
+  event.preventDefault();
+  favoritesZone.classList.remove('drag-and-drop-zone');
+
+  const productId = event.dataTransfer.getData('text/plain');
+       
+  favoritesZone.innerHTML += `<div class="fav-item">Товар #${productId}</div>`;
 });
 
 function calculateTotal() {
@@ -196,7 +239,7 @@ async function initShop() {
         const htmlString = data
             .map(
                 (product) => `
-                    <article class="product-card">
+                    <article class="product-card" draggable="true" data-id="${product.id}">
                     <img src="${product.image}" alt="${product.title}">
                     <h3>${product.title}</h3>
                     <p class="price">$${product.price}</p>
